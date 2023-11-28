@@ -65,7 +65,7 @@ const Header = () => {
                 <a href={e.url}>
                   {
                     <FontAwesomeIcon
-                      style={{ margin: "5px" }}
+                      style={{ marginLeft: "5px" }}
                       icon={e.icon}
                       size="2x"
                     />
@@ -76,7 +76,12 @@ const Header = () => {
           </nav>
           <nav>
             <HStack spacing={8}>
-              {/* Add links to Projects and Contact me section */}
+              <a a href="/#projects" onClick={handleClick("projects")}>
+                Projects
+              </a>
+              <a href="/#contact-me" onClick={handleClick("contactme")}>
+                Contact Me
+              </a>
             </HStack>
           </nav>
         </HStack>
