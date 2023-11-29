@@ -1,6 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faLinkedin,
@@ -40,13 +39,37 @@ const Header = () => {
     }
   };
 
+  const [varPoint, setVarPoint] = useState("translateY(0px)");
+
+  let lastScrollTop = document.documentElement.scrollTop;
+
+  function handleScroll() {
+    const scrollTopPosition =
+      window.scrollY || document.documentElement.scrollTop;
+    if (scrollTopPosition > lastScrollTop) {
+      setVarPoint("translateY(0px)");
+    } else if (scrollTopPosition < lastScrollTop) {
+      setVarPoint("translateY(-200px)");
+    }
+    lastScrollTop = scrollTopPosition;
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }),
+    [varPoint];
+
   return (
     <Box
       position="fixed"
       top={0}
       left={0}
       right={0}
-      translateY={0}
+      transform={varPoint}
       transitionProperty="transform"
       transitionDuration=".3s"
       transitionTimingFunction="ease-in-out"
@@ -61,8 +84,8 @@ const Header = () => {
         >
           <nav>
             <HStack>
-              {socials.map((e) => (
-                <a href={e.url}>
+              {socials.map((e, index) => (
+                <a href={e.url} key={index}>
                   {
                     <FontAwesomeIcon
                       style={{ marginLeft: "5px" }}
@@ -76,7 +99,7 @@ const Header = () => {
           </nav>
           <nav>
             <HStack spacing={8}>
-              <a a href="/#projects" onClick={handleClick("projects")}>
+              <a href="/#projects" onClick={handleClick("projects")}>
                 Projects
               </a>
               <a href="/#contact-me" onClick={handleClick("contactme")}>
