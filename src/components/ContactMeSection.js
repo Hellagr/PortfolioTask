@@ -16,6 +16,7 @@ import * as Yup from "yup";
 import FullScreenSection from "./FullScreenSection";
 import useSubmit from "../hooks/useSubmit";
 import { useAlertContext } from "../context/alertContext";
+import { Spinner } from "@chakra-ui/react";
 
 const LandingSection = () => {
   const { isLoading, response, submit } = useSubmit();
@@ -116,7 +117,7 @@ const LandingSection = () => {
                 <FormErrorMessage>{formik.errors.comment}</FormErrorMessage>
               </FormControl>
               <Button type="submit" colorScheme="purple" width="full">
-                {isLoading === true ? "Sending data..." : "Submit"}
+                {isLoading === true ? <Spinner /> : "Submit"}
               </Button>
             </VStack>
           </form>

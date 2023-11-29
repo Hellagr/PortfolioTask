@@ -1,29 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faLinkedin,
-  faGoogle,
-  faInstagram,
+  faMedium,
+  faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
 import { Box, HStack } from "@chakra-ui/react";
 
 const socials = [
   {
-    icon: faGoogle,
-    url: "gmail: alehkushniarou@gmail.com",
+    icon: faEnvelope,
+    url: "mailto: hello@example.com",
   },
   {
     icon: faGithub,
-    url: "https://github.com/Hellagr",
+    url: "https://github.com",
   },
   {
     icon: faLinkedin,
-    url: "https://www.linkedin.com/in/aleh-kushniarou-18996a254",
+    url: "https://www.linkedin.com",
   },
   {
-    icon: faInstagram,
-    url: "https://www.instagram.com/kushnerow.oleg",
+    icon: faMedium,
+    url: "https://medium.com",
+  },
+  {
+    icon: faStackOverflow,
+    url: "https://stackoverflow.com",
   },
 ];
 
@@ -46,9 +51,9 @@ const Header = () => {
   function handleScroll() {
     const scrollTopPosition =
       window.scrollY || document.documentElement.scrollTop;
-    if (scrollTopPosition > lastScrollTop) {
+    if (scrollTopPosition < lastScrollTop) {
       setVarPoint("translateY(0px)");
-    } else if (scrollTopPosition < lastScrollTop) {
+    } else if (scrollTopPosition > lastScrollTop) {
       setVarPoint("translateY(-200px)");
     }
     lastScrollTop = scrollTopPosition;

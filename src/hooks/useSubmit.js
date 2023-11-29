@@ -31,6 +31,10 @@ const useSubmit = () => {
       });
     } finally {
       setLoading(false);
+      data.firstName = "";
+      data.email = "";
+      data.type = "";
+      data.comment = "";
     }
   };
 
